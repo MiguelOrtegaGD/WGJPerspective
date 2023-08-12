@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class VideoOptionsDropdown : MonoBehaviour
 {
-    Dropdown _dropdown;
+    TMP_Dropdown _dropdown;
     Resolution[] _resolutions;
 
     [SerializeField] bool _quality;
@@ -13,7 +14,7 @@ public class VideoOptionsDropdown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _dropdown = GetComponent<Dropdown>();
+        _dropdown = GetComponent<TMP_Dropdown>();
 
         _dropdown.ClearOptions();
         _dropdown.AddOptions(_quality ? VideoManager.Instance.QualityOptions() : VideoManager.Instance.ResolutionOptions());
