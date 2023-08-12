@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0a974d70e2f0f429af136c8ef93dcc, type: 3}
+  m_Name: AudioClipDB
+  m_EditorClassIdentifier: 
+  _clips:
+  - _id: ButtonPressed
+    _clip: {fileID: 8300000, guid: 284abeec61785f148b0643c4adde3ace, type: 3}
+  - _id: ButtonHighlited
+    _clip: {fileID: 8300000, guid: 5834afe5cba6aa14ea4b8e416e01df27, type: 3}
+  - _id: Music1
+    _clip: {fileID: 8300000, guid: 4b86225e5dc0b4943be30eb3e34de75e, type: 3}
