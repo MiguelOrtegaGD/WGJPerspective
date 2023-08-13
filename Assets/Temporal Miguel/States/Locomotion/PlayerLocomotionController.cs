@@ -128,21 +128,18 @@ public class PlayerLocomotionController : MonoBehaviour
                 _currentRotation = new Vector3(_currentRotation.x, _verticalInputValue < 0 ? 0 : -180, _currentRotation.z);
         }
 
-        if (currentPerspective == PerspectiveEnum.Top)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_currentRotation), _rotationSpeed * Time.deltaTime);
-        else
-            transform.rotation = Quaternion.Euler(_currentRotation);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_currentRotation), _rotationSpeed * Time.deltaTime);
     }
 
     public void Movement()
     {
         if (_verticalInputValue != 0 || _horizontalInputValue != 0)
-            _rigid.velocity = transform.forward * _speed;
+            _rigid.velocity = new Vector3(-_horizontalInputValue, _rigid.velocity.y, -_verticalInputValue) * _speed;
     }
 
     public void Jump()
     {
-        if (_grounded)
+        if (_grounded && currentPerspective == PerspectiveEnum.Side)
             _jumpActivated = true;
     }
 
