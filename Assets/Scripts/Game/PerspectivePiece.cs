@@ -19,10 +19,12 @@ public class PerspectivePiece : MonoBehaviour
 
     [SerializeField] Vector3 childSize;
 
+    float initialScale;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        initialScale = transform.localScale.x;
     }
     private void Update()
     {
@@ -33,11 +35,6 @@ public class PerspectivePiece : MonoBehaviour
 
             else
                 changeScale = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            newScale = scaler.ConvertRange(child.transform.position.z, maxScale, minScale, childSize.z);
         }
     }
 
@@ -95,7 +92,7 @@ public class PerspectivePiece : MonoBehaviour
 
     public void ReturnScale()
     {
-        newScale = 1;
+        newScale = initialScale;
         scaleSpeed = Mathf.Abs((transform.localScale.x - newScale)) / duration;
         changeScale = true;
     }
