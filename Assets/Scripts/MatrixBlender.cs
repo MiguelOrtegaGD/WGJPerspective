@@ -12,11 +12,17 @@ public class MatrixBlender : MonoBehaviour
         currentCamera = GetComponent<Camera>();
 
         // Define la matriz de proyecci�n en perspectiva que deseas aplicar
-        Matrix4x4 perspectiveMatrix = Matrix4x4.Perspective(60, GetComponent<Camera>().aspect, GetComponent<Camera>().nearClipPlane, GetComponent<Camera>().farClipPlane);
+        //Matrix4x4 perspectiveMatrix = Matrix4x4.Perspective(60, GetComponent<Camera>().aspect, GetComponent<Camera>().nearClipPlane, GetComponent<Camera>().farClipPlane);
 
-        // Llama a la funci�n BlendToMatrix para realizar la transici�n
-        MatrixBlender matrixBlender = GetComponent<MatrixBlender>();
-        matrixBlender.BlendToMatrix(perspectiveMatrix, transitionDuration);
+        //// Llama a la funci�n BlendToMatrix para realizar la transici�n
+        //MatrixBlender matrixBlender = GetComponent<MatrixBlender>();
+        //matrixBlender.BlendToMatrix(perspectiveMatrix, transitionDuration);
+
+        Matrix4x4 orthographicMatrix = Matrix4x4.Ortho(-10, 10, -10, 10, currentCamera.nearClipPlane, currentCamera.farClipPlane);
+
+        // Llama a la función BlendToMatrix para realizar la transición
+        MatrixBlender matrixBlender2 = GetComponent<MatrixBlender>();
+        matrixBlender2.BlendToMatrix(orthographicMatrix, transitionDuration);
     }
 
     public static Matrix4x4 MatrixLerp(Matrix4x4 from, Matrix4x4 to, float time)
