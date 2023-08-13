@@ -7,4 +7,7 @@ public static class GameDelegateHelper
 {
     public delegate void ChangePerspective(PerspectiveEnum newPerspective);
     public static ChangePerspective changePerspective;
+
+    public delegate void TutorialStep();
+    public static TutorialStep nextTutorialStep;
 }

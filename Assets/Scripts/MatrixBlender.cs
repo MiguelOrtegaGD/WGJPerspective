@@ -1,28 +1,44 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(Camera))]
 public class MatrixBlender : MonoBehaviour
 {
     Camera currentCamera;
+    [SerializeField] Camera perspectiveCamera;
+    Matrix4x4 targetMatrix;
+    float transitionDuration;
+    float transitionProgress;
+    bool transitioning = false;
+    Matrix4x4 orthographicMatrix;
+    Matrix4x4 perspectiveMatrix;
+    [SerializeField] float transitionSpeed = 1.0f;
 
-    [SerializeField] float transitionDuration;
     private void Start()
     {
         currentCamera = GetComponent<Camera>();
+        transitionDuration = 1.0f; // Tiempo de transición inicial
 
-        // Define la matriz de proyecci�n en perspectiva que deseas aplicar
-        //Matrix4x4 perspectiveMatrix = Matrix4x4.Perspective(60, GetComponent<Camera>().aspect, GetComponent<Camera>().nearClipPlane, GetComponent<Camera>().farClipPlane);
+        //orthographicMatrix = Matrix4x4.Ortho(-10, 10, -10, 10, currentCamera.nearClipPlane, currentCamera.farClipPlane);
+        orthographicMatrix = currentCamera.projectionMatrix;
+        perspectiveMatrix = Matrix4x4.Perspective(perspectiveCamera.fieldOfView, perspectiveCamera.aspect, perspectiveCamera.nearClipPlane, perspectiveCamera.farClipPlane);
+        perspectiveCamera.gameObject.SetActive(false);
+        // = Matrix4x4.Perspective(60, GetComponent<Camera>().aspect, GetComponent<Camera>().nearClipPlane, GetComponent<Camera>().farClipPlane);
+        targetMatrix = orthographicMatrix;
+    }
 
-        //// Llama a la funci�n BlendToMatrix para realizar la transici�n
-        //MatrixBlender matrixBlender = GetComponent<MatrixBlender>();
-        //matrixBlender.BlendToMatrix(perspectiveMatrix, transitionDuration);
+    private void Update()
+    {
+        if (transitioning)
+        {
+            transitionProgress += Time.deltaTime / transitionDuration;
+            if (transitionProgress > 1.0f)
+            {
+                transitionProgress = 1.0f;
+                transitioning = false;
+            }
 
-        Matrix4x4 orthographicMatrix = Matrix4x4.Ortho(-10, 10, -10, 10, currentCamera.nearClipPlane, currentCamera.farClipPlane);
-
-        // Llama a la función BlendToMatrix para realizar la transición
-        MatrixBlender matrixBlender2 = GetComponent<MatrixBlender>();
-        matrixBlender2.BlendToMatrix(orthographicMatrix, transitionDuration);
+            currentCamera.projectionMatrix = MatrixLerp(currentCamera.projectionMatrix, targetMatrix, transitionProgress);
+        }
     }
 
     public static Matrix4x4 MatrixLerp(Matrix4x4 from, Matrix4x4 to, float time)
@@ -33,20 +49,28 @@ public class MatrixBlender : MonoBehaviour
         return ret;
     }
 
-    private IEnumerator LerpFromTo(Matrix4x4 src, Matrix4x4 dest, float duration)
+    public void BlendToMatrix(Matrix4x4 newMatrix, float duration)
     {
-        float startTime = Time.time;
-        while (Time.time - startTime < duration)
-        {
-            currentCamera.projectionMatrix = MatrixLerp(src, dest, (Time.time - startTime) / duration);
-            yield return 1;
-        }
-        currentCamera.projectionMatrix = dest;
+        targetMatrix = newMatrix;
+        transitionDuration = duration;
+        transitionProgress = 0.0f;
+        transitioning = true;
     }
 
-    public Coroutine BlendToMatrix(Matrix4x4 targetMatrix, float duration)
+    public void ChangePerspective(PerspectiveEnum newPerspective)
     {
-        StopAllCoroutines();
-        return StartCoroutine(LerpFromTo(currentCamera.projectionMatrix, targetMatrix, duration));
+        //BlendToMatrix(orthographicMatrix, transitionSpeed);
+        BlendToMatrix(newPerspective == PerspectiveEnum.Side ? orthographicMatrix : perspectiveMatrix, transitionSpeed);
     }
+
+    private void OnEnable()
+    {
+        GameDelegateHelper.changePerspective += ChangePerspective;
+    }
+
+    private void OnDisable()
+    {
+        GameDelegateHelper.changePerspective -= ChangePerspective;
+    }
+
 }
