@@ -30,6 +30,7 @@ public class PlayerLocomotionController : MonoBehaviour
     bool _grounded;
     bool _jumpActivated;
 
+    PerspectiveEnum currentPerspective;
 
     PlayerIdleState _idleState = new PlayerIdleState();
     PlayerWalkState _walkState = new PlayerWalkState();
@@ -59,7 +60,8 @@ public class PlayerLocomotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _verticalInputValue = Input.GetAxis("Vertical");
+        _verticalInputValue = currentPerspective == PerspectiveEnum.Side ? 0 : Input.GetAxis("Vertical");
+
         _horizontalInputValue = Input.GetAxis("Horizontal");
 
         _speed = Mathf.MoveTowards(_speed, _newSpeed, _changeSpeedTime * Time.deltaTime);
@@ -126,17 +128,16 @@ public class PlayerLocomotionController : MonoBehaviour
                 _currentRotation = new Vector3(_currentRotation.x, _verticalInputValue < 0 ? 0 : -180, _currentRotation.z);
         }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_currentRotation), _rotationSpeed * Time.deltaTime);
+        if (currentPerspective == PerspectiveEnum.Top)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_currentRotation), _rotationSpeed * Time.deltaTime);
+        else
+            transform.rotation = Quaternion.Euler(_currentRotation);
     }
 
     public void Movement()
     {
         if (_verticalInputValue != 0 || _horizontalInputValue != 0)
-            _rigid.AddForce(transform.forward * _speed, ForceMode.Acceleration);
-        //_rigid.velocity = new Vector3(transform.forward.x, _rigid.velocity.y, transform.forward.z) * _speed;
-        //_rigid.velocity = transform.forward * _speed;
-        //_rigid.velocity = new Vector3(transform.forward.x, _rigid.velocity.y, transform.forward.z) * _speed;
-        //_rigid.AddForce(transform.forward * _speed, ForceMode.Acceleration);
+            _rigid.velocity = transform.forward * _speed;
     }
 
     public void Jump()
@@ -152,6 +153,20 @@ public class PlayerLocomotionController : MonoBehaviour
 
         _movementState = _newState;
         _movementState.StartState(this);
+    }
+
+    public void ChangePerspective(PerspectiveEnum newPerspective)
+    {
+        currentPerspective = newPerspective;
+    }
+    private void OnEnable()
+    {
+        GameDelegateHelper.changePerspective += ChangePerspective;
+    }
+
+    private void OnDisable()
+    {
+        GameDelegateHelper.changePerspective -= ChangePerspective;
     }
 
 }
