@@ -18,7 +18,7 @@ public class PerspectiveController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             ChangePerspective();
         }

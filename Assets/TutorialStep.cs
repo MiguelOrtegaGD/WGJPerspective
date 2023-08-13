@@ -13,24 +13,34 @@ public class TutorialStep : MonoBehaviour
     [SerializeField] PlayableDirector director;
     [SerializeField] float timer;
 
+    bool activeTimer = false;
+
+    ParticleSystem particle;
+
     [SerializeField] UnityEvent initialEvents;
     [SerializeField] UnityEvent finishedEvents;
 
     private void Start()
     {
         initialEvents?.Invoke();
+
+        if (gameObject.GetComponent<ParticleSystem>() && inputType == TutorialInputEnum.Collision)
+            particle = gameObject.GetComponent<ParticleSystem>();
     }
     private void Update()
     {
         if (inputType == TutorialInputEnum.Input)
         {
-            if (Input.GetAxis(axisName) != 0)
-                NextStep();
+            if (!string.IsNullOrEmpty(axisName))
+            {
+                if (Input.GetAxis(axisName) != 0)
+                    NextStep();
+            }
             else if (Input.GetKeyDown(key))
                 NextStep();
         }
 
-        if (inputType == TutorialInputEnum.Time)
+        if (inputType == TutorialInputEnum.Time || activeTimer == true)
         {
             timer -= Time.deltaTime;
 
@@ -50,7 +60,13 @@ public class TutorialStep : MonoBehaviour
     {
         if (inputType == TutorialInputEnum.Collision)
             if (other.CompareTag(targetTag))
-                NextStep();
+                if (!particle)
+                    NextStep();
+                else
+                {
+                    particle.Stop();
+                    activeTimer = true;
+                }
     }
 
     public void CinematicFinished(PlayableDirector dir)
