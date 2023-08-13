@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028337, g: 0.22571322, b: 0.30692178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028353, g: 0.2257137, b: 0.30692255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,8 +150,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41634472}
-  m_LocalRotation: {x: -0.47360495, y: -3.3160416e-16, z: -0.000000056458102, w: -0.8807374}
-  m_LocalPosition: {x: 3.0444882, y: 22.034283, z: -4.4914927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: -1}
+  m_LocalPosition: {x: 3.0444882, y: 4.8999996, z: -8.171494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,7 +260,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13.04
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -481,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 2918696573481818248, guid: a93b5dfd79866c241af4ae8ea44933ed,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2612125992734795218, guid: a93b5dfd79866c241af4ae8ea44933ed, type: 3}
@@ -879,6 +879,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55119030162506426, guid: 884138be56787444f9facab1fa7951bd,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.69948
+      objectReference: {fileID: 0}
+    - target: {fileID: 55119030162506426, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.69948
+      objectReference: {fileID: 0}
+    - target: {fileID: 55119030162506426, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.69948
+      objectReference: {fileID: 0}
+    - target: {fileID: 55119030162506426, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -932,6 +947,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fluffy
       objectReference: {fileID: 0}
+    - target: {fileID: 6207084690706176192, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 420a433c3cdf3a34ca57b40c21dea500, type: 3}
+    - target: {fileID: 6207084690706176192, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207084690706176192, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5598b4c74c46bcd44b5d5a69b0209fbc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 884138be56787444f9facab1fa7951bd, type: 3}
 --- !u!4 &1557803497 stripped
@@ -983,10 +1013,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8128782
-  m_Height: 3.6316645
+  m_Radius: 1.324459
+  m_Height: 4.744493
   m_Direction: 1
-  m_Center: {x: 0.014898956, y: 1.7851499, z: 0.17133814}
+  m_Center: {x: 0.0148989465, y: 2.3415644, z: 0.19439399}
 --- !u!54 &1557803501
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1232,7 +1262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1806204292
 Transform:
   m_ObjectHideFlags: 0
@@ -1241,7 +1271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806204291}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -3.6549244, y: 0.9499998, z: 1.506712}
+  m_LocalPosition: {x: -2.39, y: 1.02, z: 2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
