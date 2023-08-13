@@ -11,6 +11,9 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] float _newSpeed;
     float _currentSpeed;
 
+    [SerializeField] float _highJump;
+    [SerializeField] float _lowJump;
+
     [SerializeField] float _jumpForce;
     [SerializeField] float _walkSpeed;
     [SerializeField] float _runSpeed;
@@ -28,9 +31,9 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] float _groundDetectionRadius;
 
     bool _grounded;
-    bool _jumpActivated;
+    bool _jumpActivated = false;
 
-    PerspectiveEnum currentPerspective;
+    [SerializeField] PerspectiveEnum currentPerspective;
 
     PlayerIdleState _idleState = new PlayerIdleState();
     PlayerWalkState _walkState = new PlayerWalkState();
@@ -47,13 +50,14 @@ public class PlayerLocomotionController : MonoBehaviour
     public float NewSpeed { get => _newSpeed; set => _newSpeed = value; }
     public float VerticalInputValue { get => _verticalInputValue; set => _verticalInputValue = value; }
     public float HorizontalInputValue { get => _horizontalInputValue; set => _horizontalInputValue = value; }
+    public bool JumpActivated { get => _jumpActivated; set => _jumpActivated = value; }
+    public bool Grounded { get => _grounded; set => _grounded = value; }
 
     // Start is called before the first frame update
     void Start()
     {
         _rigid = GetComponent<Rigidbody>();
         _animatorController = GetComponent<Animator>();
-
         _movementState = _idleState;
     }
 
@@ -61,7 +65,6 @@ public class PlayerLocomotionController : MonoBehaviour
     void Update()
     {
         _verticalInputValue = currentPerspective == PerspectiveEnum.Side ? 0 : Input.GetAxis("Vertical");
-
         _horizontalInputValue = Input.GetAxis("Horizontal");
 
         _speed = Mathf.MoveTowards(_speed, _newSpeed, _changeSpeedTime * Time.deltaTime);
@@ -72,16 +75,6 @@ public class PlayerLocomotionController : MonoBehaviour
         ChangeRotation();
 
         _movementState.UpdateState(this);
-
-        //if (_verticalInputValue != 0 || _horizontalInputValue != 0)
-        //    _rigid.AddForce(transform.forward * (Mathf.Abs(_verticalInputValue != 0 ? _verticalInputValue : _horizontalInputValue) * _speed), ForceMode.Acceleration);
-
-
-
-        //if (Input.GetKeyDown(KeyCode.O) && !_grabbedObject)
-        //    _animatorController.SetTrigger("Attack");
-
-
     }
 
     private void FixedUpdate()
@@ -93,7 +86,6 @@ public class PlayerLocomotionController : MonoBehaviour
 
         if (_jumpActivated)
         {
-            Debug.Log("Salto?");
             _animatorController.SetTrigger("Jump");
             _rigid.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _jumpActivated = false;
@@ -128,26 +120,34 @@ public class PlayerLocomotionController : MonoBehaviour
                 _currentRotation = new Vector3(_currentRotation.x, _verticalInputValue < 0 ? 0 : -180, _currentRotation.z);
         }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_currentRotation), _rotationSpeed * Time.deltaTime);
+        if (currentPerspective == PerspectiveEnum.Side)
+            transform.rotation = Quaternion.Euler(_currentRotation);
+        else
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_currentRotation), _rotationSpeed * Time.deltaTime);
     }
 
     public void Movement()
     {
         if (_verticalInputValue != 0 || _horizontalInputValue != 0)
-            _rigid.velocity = new Vector3(-_horizontalInputValue, _rigid.velocity.y, -_verticalInputValue) * _speed;
+            _rigid.velocity = new Vector3(-_horizontalInputValue * _speed, _rigid.velocity.y, -_verticalInputValue * _speed);
+
+        if (_rigid.velocity.y < 0)
+            _rigid.velocity += Vector3.up * Physics.gravity.y * (_highJump) * Time.deltaTime;
+
+        if (_rigid.velocity.y > 0 && !Input.GetButton("Jump"))
+            _rigid.velocity += Vector3.up * Physics.gravity.y * (_lowJump) * Time.deltaTime;
     }
 
     public void Jump()
     {
         if (_grounded && currentPerspective == PerspectiveEnum.Side)
+        {
             _jumpActivated = true;
+        }
     }
 
     public void ChangeState(PlayerLocomotionBaseState _newState)
     {
-        if (_movementState != null)
-            _movementState.ExitState(this);
-
         _movementState = _newState;
         _movementState.StartState(this);
     }

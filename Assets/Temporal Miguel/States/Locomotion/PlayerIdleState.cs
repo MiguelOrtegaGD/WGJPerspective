@@ -14,7 +14,7 @@ public class PlayerIdleState : PlayerLocomotionBaseState
         if (Input.GetKeyDown(KeyCode.Space))
             _controller.Jump();
 
-        if (_controller.HorizontalInputValue != 0 || _controller.VerticalInputValue != 0)
+        else if (_controller.HorizontalInputValue != 0 || _controller.VerticalInputValue != 0)
             if (Input.GetKeyDown(KeyCode.LeftShift))
                 _controller.ChangeState(_controller.RunState);
             else
@@ -24,7 +24,8 @@ public class PlayerIdleState : PlayerLocomotionBaseState
     {
         _controller.Movement();
     }
-    public override void ExitState(PlayerLocomotionController _controller)
+    public override void ExitState(PlayerLocomotionController _controller, PlayerLocomotionBaseState _newState)
     {
+        _controller.ChangeState(_newState);
     }
 }
