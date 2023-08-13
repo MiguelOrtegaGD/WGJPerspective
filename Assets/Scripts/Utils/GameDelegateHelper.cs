@@ -10,4 +10,7 @@ public static class GameDelegateHelper
 
     public delegate void TutorialStep();
     public static TutorialStep nextTutorialStep;
+
+    public delegate void LevelFinished();
+    public static LevelFinished isLevelFinished;
 }

@@ -67782,7 +67782,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh96786
+  m_Name: pb_Mesh106970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -68114,13 +68114,15 @@ GameObject:
   - component: {fileID: 692273494}
   - component: {fileID: 692273493}
   - component: {fileID: 692273492}
+  - component: {fileID: 692273497}
+  - component: {fileID: 692273499}
   m_Layer: 0
   m_Name: FinishLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &692273492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72893,6 +72895,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &692273497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692273491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8256621995b69004b89c5f9eef0433c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Player
+  finishedActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 692273499}
+        m_TargetAssemblyTypeName: GameUtils, Assembly-CSharp
+        m_MethodName: ChangeSceneWithFade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Nivel 1
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &692273499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692273491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9896e029b5a1094da6803a46fdd9abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &708548832
 GameObject:
   m_ObjectHideFlags: 3
@@ -93244,6 +93286,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fluffy
+      objectReference: {fileID: 0}
+    - target: {fileID: 830917274620860416, guid: 884138be56787444f9facab1fa7951bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 830917274620860416, guid: 884138be56787444f9facab1fa7951bd,
         type: 3}
