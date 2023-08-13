@@ -6,8 +6,12 @@ using UnityEngine;
 public enum TutorialInputEnum { Collision, Input, Cinematic, Time }
 public class TutorialController : MonoBehaviour
 {
-    int currentStep;
+    int currentStep = 0;
     [SerializeField] GameObject[] tutorialSteps;
+    private void Start()
+    {
+        tutorialSteps[currentStep].SetActive(true);
+    }
 
     public void NextStep()
     {

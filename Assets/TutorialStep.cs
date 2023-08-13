@@ -9,6 +9,7 @@ public class TutorialStep : MonoBehaviour
     [SerializeField] TutorialInputEnum inputType;
     [SerializeField] string targetTag;
     [SerializeField] KeyCode key;
+    [SerializeField] string axisName;
     [SerializeField] PlayableDirector director;
     [SerializeField] float timer;
 
@@ -22,8 +23,12 @@ public class TutorialStep : MonoBehaviour
     private void Update()
     {
         if (inputType == TutorialInputEnum.Input)
-            if (Input.GetKeyDown(key))
+        {
+            if (Input.GetAxis(axisName) != 0)
                 NextStep();
+            else if (Input.GetKeyDown(key))
+                NextStep();
+        }
 
         if (inputType == TutorialInputEnum.Time)
         {
