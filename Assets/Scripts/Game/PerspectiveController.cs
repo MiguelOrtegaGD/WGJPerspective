@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PerspectiveController : MonoBehaviour
 {
     [SerializeField] PerspectiveEnum currentPerspective;
 
-    [SerializeField] GameObject[] topObjects;
-    [SerializeField] GameObject[] sideObjects;
+    [SerializeField] UnityEvent topObjects;
+    [SerializeField] UnityEvent sideObjects;
 
     private void Awake()
     {
-        currentPerspective = PerspectiveEnum.Top; 
+        currentPerspective = PerspectiveEnum.Top;
         ChangePerspective();
     }
     private void Update()
@@ -27,26 +28,10 @@ public class PerspectiveController : MonoBehaviour
     {
         currentPerspective = currentPerspective == PerspectiveEnum.Top ? PerspectiveEnum.Side : PerspectiveEnum.Top;
         GameDelegateHelper.changePerspective?.Invoke(currentPerspective);
-        ChangePerspectiveObjects();
-    }
 
-    public void ChangePerspectiveObjects()
-    {
-        switch (currentPerspective)
-        {
-            case PerspectiveEnum.Side:
-                foreach (var item in topObjects)
-                    item.SetActive(false);
-                foreach (var item in sideObjects)
-                    item.SetActive(true);
-                break;
-
-            case PerspectiveEnum.Top:
-                foreach (var item in sideObjects)
-                    item.SetActive(false);
-                foreach (var item in topObjects)
-                    item.SetActive(true);
-                break;
-        }
+        if (currentPerspective == PerspectiveEnum.Top)
+            topObjects?.Invoke();
+        else
+            sideObjects?.Invoke();
     }
 }

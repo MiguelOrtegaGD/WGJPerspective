@@ -105,19 +105,19 @@ public class PlayerLocomotionController : MonoBehaviour
         if (_horizontalInputValue != 0 && _verticalInputValue != 0)
         {
             if (_verticalInputValue < 0)
-                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? 45 : -45, _currentRotation.z);
+                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -45 : 45, _currentRotation.z);
 
             else
-                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? 135 : -135, _currentRotation.z);
+                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -135 : 135, _currentRotation.z);
         }
 
         else
         {
             if (_horizontalInputValue != 0)
-                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? 90 : -90, _currentRotation.z);
+                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -90 : 90, _currentRotation.z);
 
             else if (_verticalInputValue != 0)
-                _currentRotation = new Vector3(_currentRotation.x, _verticalInputValue < 0 ? 0 : -180, _currentRotation.z);
+                _currentRotation = new Vector3(_currentRotation.x, _verticalInputValue < 0 ? 180 : 0, _currentRotation.z);
         }
 
         if (currentPerspective == PerspectiveEnum.Side)
@@ -129,7 +129,7 @@ public class PlayerLocomotionController : MonoBehaviour
     public void Movement()
     {
         if (_verticalInputValue != 0 || _horizontalInputValue != 0)
-            _rigid.velocity = new Vector3(-_horizontalInputValue * _speed, _rigid.velocity.y, -_verticalInputValue * _speed);
+            _rigid.velocity = new Vector3(_horizontalInputValue * _speed, _rigid.velocity.y, _verticalInputValue * _speed);
 
         if (_rigid.velocity.y < 0)
             _rigid.velocity += Vector3.up * Physics.gravity.y * (_highJump) * Time.deltaTime;
