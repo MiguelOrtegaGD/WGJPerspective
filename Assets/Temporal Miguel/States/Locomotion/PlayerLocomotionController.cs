@@ -33,6 +33,8 @@ public class PlayerLocomotionController : MonoBehaviour
     bool _grounded;
     bool _jumpActivated = false;
 
+    bool _movement = true;
+
     [SerializeField] PerspectiveEnum currentPerspective;
 
     PlayerIdleState _idleState = new PlayerIdleState();
@@ -64,8 +66,11 @@ public class PlayerLocomotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _verticalInputValue = currentPerspective == PerspectiveEnum.Side ? 0 : Input.GetAxis("Vertical");
-        _horizontalInputValue = Input.GetAxis("Horizontal");
+        if (_movement)
+        {
+            _verticalInputValue = currentPerspective == PerspectiveEnum.Side ? 0 : Input.GetAxis("Vertical");
+            _horizontalInputValue = Input.GetAxis("Horizontal");
+        }
 
         _speed = Mathf.MoveTowards(_speed, _newSpeed, _changeSpeedTime * Time.deltaTime);
         _currentSpeed = Mathf.Abs(_verticalInputValue != 0 ? _verticalInputValue : _horizontalInputValue) * _speed;
@@ -128,19 +133,22 @@ public class PlayerLocomotionController : MonoBehaviour
 
     public void Movement()
     {
-        if (_verticalInputValue != 0 || _horizontalInputValue != 0)
-            _rigid.velocity = new Vector3(_horizontalInputValue * _speed, _rigid.velocity.y, _verticalInputValue * _speed);
+        if (_movement)
+        {
+            if (_verticalInputValue != 0 || _horizontalInputValue != 0)
+                _rigid.velocity = new Vector3(_horizontalInputValue * _speed, _rigid.velocity.y, _verticalInputValue * _speed);
 
-        if (_rigid.velocity.y < 0)
-            _rigid.velocity += Vector3.up * Physics.gravity.y * (_highJump) * Time.deltaTime;
+            if (_rigid.velocity.y < 0)
+                _rigid.velocity += Vector3.up * Physics.gravity.y * (_highJump) * Time.deltaTime;
 
-        if (_rigid.velocity.y > 0 && !Input.GetButton("Jump"))
-            _rigid.velocity += Vector3.up * Physics.gravity.y * (_lowJump) * Time.deltaTime;
+            if (_rigid.velocity.y > 0 && !Input.GetButton("Jump"))
+                _rigid.velocity += Vector3.up * Physics.gravity.y * (_lowJump) * Time.deltaTime;
+        }
     }
 
     public void Jump()
     {
-        if (_grounded && currentPerspective == PerspectiveEnum.Side)
+        if (_grounded && currentPerspective == PerspectiveEnum.Side && _movement)
         {
             _jumpActivated = true;
         }
@@ -156,14 +164,22 @@ public class PlayerLocomotionController : MonoBehaviour
     {
         currentPerspective = newPerspective;
     }
+
+    public void LevelFinished()
+    {
+        _movement = false;
+    }
+
     private void OnEnable()
     {
         GameDelegateHelper.changePerspective += ChangePerspective;
+        GameDelegateHelper.isLevelFinished += LevelFinished;
     }
 
     private void OnDisable()
     {
         GameDelegateHelper.changePerspective -= ChangePerspective;
+        GameDelegateHelper.isLevelFinished -= LevelFinished;
     }
 
 }
