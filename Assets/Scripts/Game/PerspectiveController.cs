@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class PerspectiveController : MonoBehaviour
 {
-    [SerializeField] PerspectiveEnum currentPerspective = PerspectiveEnum.Side;
+    [SerializeField] PerspectiveEnum currentPerspective;
 
     [SerializeField] GameObject[] topObjects;
     [SerializeField] GameObject[] sideObjects;
 
+    private void Awake()
+    {
+        currentPerspective = PerspectiveEnum.Top; 
+        ChangePerspective();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))

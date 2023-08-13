@@ -13,15 +13,15 @@ public class PlayerRunState : PlayerLocomotionBaseState
         if (Input.GetKeyDown(KeyCode.Space))
             _controller.Jump();
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
             _controller.ChangeState(_controller.WalkState);
     }
     public override void FixedState(PlayerLocomotionController _controller)
     {
         _controller.Movement();
     }
-    public override void ExitState(PlayerLocomotionController _controller)
+    public override void ExitState(PlayerLocomotionController _controller, PlayerLocomotionBaseState _newState)
     {
-
+        _controller.ChangeState(_newState);
     }
 }

@@ -150,8 +150,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41634472}
-  m_LocalRotation: {x: 0.000000056458102, y: 0.8807374, z: -0.47360495, w: -3.3160416e-16}
-  m_LocalPosition: {x: 0.89058757, y: 22.034283, z: 8.578205}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.89058757, y: 4.8999996, z: 12.258205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,7 +260,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13.04
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -435,13 +435,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2612125992734795216, guid: a93b5dfd79866c241af4ae8ea44933ed,
         type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612125992734795216, guid: a93b5dfd79866c241af4ae8ea44933ed,
+        type: 3}
       propertyPath: m_CollisionDetection
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
         type: 3}
+      propertyPath: _lowJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
+        type: 3}
+      propertyPath: _highJump
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
+        type: 3}
       propertyPath: _runSpeed
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
+        type: 3}
+      propertyPath: _jumpForce
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
         type: 3}
@@ -452,6 +477,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _rotationSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
+        type: 3}
+      propertyPath: _changeSpeedTime
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2612125992734795217, guid: a93b5dfd79866c241af4ae8ea44933ed,
         type: 3}
@@ -475,6 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2612125992734795218, guid: a93b5dfd79866c241af4ae8ea44933ed, type: 3}
+    - {fileID: 2612125992734795230, guid: a93b5dfd79866c241af4ae8ea44933ed, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a93b5dfd79866c241af4ae8ea44933ed, type: 3}
 --- !u!1 &391082045
 GameObject:
@@ -863,7 +894,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30012
+  m_Name: pb_Mesh66404
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1450,7 +1481,6 @@ GameObject:
   - component: {fileID: 2019879005}
   - component: {fileID: 2019879004}
   - component: {fileID: 2019879009}
-  - component: {fileID: 2019879011}
   - component: {fileID: 2019879010}
   m_Layer: 0
   m_Name: Cube
@@ -6390,20 +6420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manageVisibility: 0
---- !u!64 &2019879011
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019879002}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1275800107}
 --- !u!1 &2144666810
 GameObject:
   m_ObjectHideFlags: 0
@@ -6420,7 +6436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2144666811
 Transform:
   m_ObjectHideFlags: 0
