@@ -105,10 +105,10 @@ public class PlayerLocomotionController : MonoBehaviour
         if (_horizontalInputValue != 0 && _verticalInputValue != 0)
         {
             if (_verticalInputValue < 0)
-                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -45 : 45, _currentRotation.z);
+                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -135 : 135, _currentRotation.z);
 
             else
-                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -135 : 135, _currentRotation.z);
+                _currentRotation = new Vector3(_currentRotation.x, _horizontalInputValue < 0 ? -45 : 45, _currentRotation.z);
         }
 
         else
