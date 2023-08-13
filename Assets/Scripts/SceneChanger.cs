@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private  int nextScene;
+    [SerializeField] private int nextScene;
 
     private void OnTriggerEnter(Collider collision)
     {
