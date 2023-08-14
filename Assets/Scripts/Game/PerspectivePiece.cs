@@ -20,6 +20,7 @@ public class PerspectivePiece : MonoBehaviour
     [SerializeField] Vector3 childSize;
 
     float initialScale;
+    Vector3 lastPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,7 @@ public class PerspectivePiece : MonoBehaviour
     public void ChangeScale()
     {
         // newScale = scaler.ConvertRange(child.transform.position.z, maxScale, minScale, childSize.z);
+        lastPosition = transform.position;
         newScale = scaler.ConvertirValor(child.transform.position.z, minScale, maxScale, childSize.z);
 
         Ray positiveXRay = new Ray(new Vector3(child.transform.position.x + (newScale / 2), child.transform.position.y, child.transform.position.z), Vector3.down);
@@ -96,6 +98,11 @@ public class PerspectivePiece : MonoBehaviour
 
     public void ReturnScale()
     {
+        child.transform.SetParent(null);
+        Vector3 newPivotPosition = new Vector3(child.transform.position.x, child.transform.position.y - (childSize.y / 2), child.transform.position.z);
+        transform.position = newPivotPosition;
+        child.transform.SetParent(transform);
+
         newScale = initialScale;
         scaleSpeed = Mathf.Abs((transform.localScale.x - newScale)) / duration;
         changeScale = true;
