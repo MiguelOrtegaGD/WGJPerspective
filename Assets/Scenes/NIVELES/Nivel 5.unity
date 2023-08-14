@@ -5455,7 +5455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &197228071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5478,7 +5478,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 13.04
+    OrthographicSize: 13.8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5502,7 +5502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197228070}
   m_LocalRotation: {x: 0.47360495, y: 3.3160416e-16, z: 0.000000056458102, w: 0.8807374}
-  m_LocalPosition: {x: 1.91, y: 3.5342836, z: -2.9782047}
+  m_LocalPosition: {x: 4.44, y: 4.44, z: -1.61}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5943,7 +5943,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 9.69
+    OrthographicSize: 11.61
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5967,7 +5967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420642284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: -14.44, z: -6.658205}
+  m_LocalPosition: {x: 5.15, y: -11.97, z: -6.658205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11899,7 +11899,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.69
+  orthographic size: 13.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11922,8 +11922,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725271256}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -2.9106162, y: 4.0600004, z: 21.770477}
+  m_LocalRotation: {x: -0.000000056458102, y: -0.8807374, z: 0.47360495, w: 3.3160416e-16}
+  m_LocalPosition: {x: -4.8206162, y: 22.94, z: 16.722273}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70702,7 +70702,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30406
+  m_Name: pb_Mesh28182
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
