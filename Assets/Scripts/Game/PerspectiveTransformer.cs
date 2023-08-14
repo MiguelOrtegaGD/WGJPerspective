@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PerspectiveTransformer : MonoBehaviour
 {
-    [SerializeField] GameObject[] topObjects;
-    [SerializeField] GameObject[] sideObjects;
+    [SerializeField] UnityEvent topActions;
+    [SerializeField] UnityEvent sideActions;
 
     private void OnEnable()
     {
@@ -22,17 +23,11 @@ public class PerspectiveTransformer : MonoBehaviour
         switch (newPerspective)
         {
             case PerspectiveEnum.Side:
-                foreach (var item in topObjects)
-                    item.SetActive(false);
-                foreach (var item in sideObjects)
-                    item.SetActive(true);
+                sideActions?.Invoke();
                 break;
 
             case PerspectiveEnum.Top:
-                foreach (var item in sideObjects)
-                    item.SetActive(false);
-                foreach (var item in topObjects)
-                    item.SetActive(true);
+                topActions?.Invoke();
                 break;
         }
     }

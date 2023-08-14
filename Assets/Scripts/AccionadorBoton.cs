@@ -14,8 +14,11 @@ public class AccionadorBoton : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {   
-        _boton.SetBool("Boton", true);
-        _plataforma.SetBool("Hola", true);
+    {
+        if (other.CompareTag("Player"))
+        {
+            _boton.SetBool("Boton", true);
+            _plataforma.SetBool("Hola", true);
+        }
     }
 }

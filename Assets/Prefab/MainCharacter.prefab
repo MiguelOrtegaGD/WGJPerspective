@@ -1057,7 +1057,7 @@ MonoBehaviour:
   _changeSpeedTime: 10
   _groundLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
   _groundDetectionCenter: {fileID: 7588604229485734179}
   _groundDetectionRadius: 0.16
   currentPerspective: 0
