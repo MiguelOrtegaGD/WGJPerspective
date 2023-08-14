@@ -68,8 +68,8 @@ public class PlayerLocomotionController : MonoBehaviour
     {
         if (_movement)
         {
-            _verticalInputValue = currentPerspective == PerspectiveEnum.Side ? 0 : Input.GetAxis("Vertical");
-            _horizontalInputValue = Input.GetAxis("Horizontal");
+            _verticalInputValue = currentPerspective == PerspectiveEnum.Side ? 0 : -Input.GetAxis("Vertical");
+            _horizontalInputValue = -Input.GetAxis("Horizontal");
         }
 
         _speed = Mathf.MoveTowards(_speed, _newSpeed, _changeSpeedTime * Time.deltaTime);
