@@ -11,10 +11,24 @@ public class PerspectiveController : MonoBehaviour
     [SerializeField] UnityEvent topObjects;
     [SerializeField] UnityEvent sideObjects;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    GameDelegateHelper.changePerspective?.Invoke(currentPerspective);
+
+    //    if (currentPerspective == PerspectiveEnum.Top)
+    //        topObjects?.Invoke();
+    //    else
+    //        sideObjects?.Invoke();
+    //}
+
+    private void Start()
     {
-        currentPerspective = PerspectiveEnum.Top;
-        ChangePerspective();
+        GameDelegateHelper.changePerspective?.Invoke(currentPerspective);
+
+        if (currentPerspective == PerspectiveEnum.Top)
+            topObjects?.Invoke();
+        else
+            sideObjects?.Invoke();
     }
     private void Update()
     {

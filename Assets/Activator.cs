@@ -10,7 +10,7 @@ public class Activator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(key))
             actions?.Invoke();
     }
 }
