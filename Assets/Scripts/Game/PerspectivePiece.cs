@@ -54,7 +54,8 @@ public class PerspectivePiece : MonoBehaviour
 
     public void ChangeScale()
     {
-        newScale = scaler.ConvertRange(child.transform.position.z, maxScale, minScale, childSize.z);
+        // newScale = scaler.ConvertRange(child.transform.position.z, maxScale, minScale, childSize.z);
+        newScale = scaler.ConvertirValor(child.transform.position.z, minScale, maxScale,  childSize.z);
 
         Ray positiveXRay = new Ray(new Vector3(child.transform.position.x + (newScale / 2), child.transform.position.y, child.transform.position.z), Vector3.down);
         Ray negativeXRay = new Ray(new Vector3(child.transform.position.x - (newScale / 2), child.transform.position.y, child.transform.position.z), Vector3.down);
