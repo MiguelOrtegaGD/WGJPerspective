@@ -29,4 +29,9 @@ public class GameUtils : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ReloadSceneWithFade()
+    {
+        StartCoroutine(ChangeSceneWithFadeCoroutine(SceneManager.GetActiveScene().name));
+    }
 }
