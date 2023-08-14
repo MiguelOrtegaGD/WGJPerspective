@@ -4736,6 +4736,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853559191}
   m_CullTransparentMesh: 1
+--- !u!1 &1880050194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880050196}
+  - component: {fileID: 1880050195}
+  - component: {fileID: 1880050197}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1880050195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880050194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c3f3646c2fd2645afb308b7156ae92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicName: Music1
+--- !u!4 &1880050196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880050194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.219817, y: 4.737939, z: 2.667161}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880050197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880050194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c26dd85dbe2e748b6e779a3146dbd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttons:
+  - _button: {fileID: 3383911023369557636}
+    _events:
+    - _eventType: 0
+      _clip: Highlited
+    - _eventType: 4
+      _clip: Pressed
+  - _button: {fileID: 3383911023208552102}
+    _events:
+    - _eventType: 0
+      _clip: Highlited
+    - _eventType: 4
+      _clip: Pressed
 --- !u!1 &1900535496
 GameObject:
   m_ObjectHideFlags: 0

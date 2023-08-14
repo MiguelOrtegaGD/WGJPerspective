@@ -40,6 +40,7 @@ public class PerspectiveController : MonoBehaviour
 
     public void ChangePerspective()
     {
+        AudioManager.Instance.PlayMainSfx("Perspective");
         currentPerspective = currentPerspective == PerspectiveEnum.Top ? PerspectiveEnum.Side : PerspectiveEnum.Top;
         GameDelegateHelper.changePerspective?.Invoke(currentPerspective);
 

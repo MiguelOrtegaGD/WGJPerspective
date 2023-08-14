@@ -10,4 +10,14 @@ public class AudioEventListener : MonoBehaviour
         int random = Random.Range(0, soundEffects.Count);
         AudioManager.Instance.PlayMainSfx(soundEffects[random]);
     }
+
+    public void LandEffect()
+    {
+        AudioManager.Instance.PlayMainSfx("Landing");
+    }
+
+    public void JumpEffect()
+    {
+        AudioManager.Instance.PlayMainSfx("Jump");
+    }
 }

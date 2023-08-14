@@ -34,4 +34,9 @@ public class GameUtils : MonoBehaviour
     {
         StartCoroutine(ChangeSceneWithFadeCoroutine(SceneManager.GetActiveScene().name));
     }
+
+    public void PlaySoundEffect(string clipName)
+    {
+        AudioManager.Instance.PlayMainSfx(clipName);
+    }
 }
